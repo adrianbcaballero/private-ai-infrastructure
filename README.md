@@ -12,12 +12,12 @@ deployment in regulated contexts.
 ## Stack
 
 ### AI Inference (aeglero-ai)
-- llama.cpp with CUDA — dual GPU tensor splitting
+- llama.cpp with CUDA. Dual GPU tensor splitting
 - GTX 1080 + GTX 1660 Super
-- Open WebUI — browser based chat interface
-- Continue.dev — AI assisted development
+- Open WebUI, browser based chat interface
+- Continue.dev. AI assisted development
 - DeepSeek + additional models
-- Docker + LocalStack — local AWS simulation
+- Docker + LocalStack. Local AWS simulation
 
 ### Network Security (aegis)
 - Raspberry Pi 3B+
@@ -42,8 +42,7 @@ deployment in regulated contexts.
 
 ## HIPAA Relevance
 All AI inference runs locally — no PHI ever leaves 
-the network. See docs/hipaa-relevance.md for full 
-compliance architecture notes.
+the network. Full compliance architecture notes in progress.
 
 ## Project Status
 - [x] Bare metal Ubuntu Server deployment
