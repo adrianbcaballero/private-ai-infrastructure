@@ -113,28 +113,6 @@ inter-VLAN flow must be explicitly allowed.
 Anything not matching an allow rule is dropped by the FORWARD
 chain's default DROP policy. This is the security boundary.
 
-## Verification Commands
-
-```bash
-# IP forwarding is on
-cat /proc/sys/net/ipv4/ip_forward      # → 1
-
-# Interfaces and IPs
-ip -br addr
-
-# Routing table
-ip route
-
-# NAT rules in kernel
-sudo iptables -t nat -L POSTROUTING -n -v
-
-# Forward rules in kernel
-sudo iptables -L ufw-user-forward -n -v
-
-# UFW summary
-sudo ufw status verbose
-```
-
 ## Recovery / Rebuild
 
 If the Pi needs to be re-imaged:

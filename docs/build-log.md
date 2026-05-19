@@ -28,8 +28,6 @@ weighted toward the 1080 to keep the 1660 below its VRAM ceiling
 under sustained load.
 
 ## Lessons Learned
-- Component-isolation diagnosis is faster than swapping
-  wholesale when you don't have known-good spares on hand.
 - Second-hand hardware is fine for self-hosted infrastructure,
   but budget time for stability validation — don't treat it as
   production on day one.

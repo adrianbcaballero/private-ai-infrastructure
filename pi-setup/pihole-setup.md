@@ -54,11 +54,3 @@ pihole -up      # update Pi-hole itself
 pihole -g       # refresh gravity (blocklists)
 pihole -c       # live query dashboard in terminal
 ```
-
-## Notes
-- Some smart-home devices (Chromecast, certain IoT) hardcode
-  8.8.8.8 / 1.1.1.1 and bypass Pi-hole. Router-level NAT
-  redirect of all outbound port 53 traffic is the workaround,
-  but it breaks DNS-over-HTTPS clients. Pick your battles.
-- Pi-hole won't filter DoH/DoT traffic out of the box — those
-  resolve outside the DNS layer.

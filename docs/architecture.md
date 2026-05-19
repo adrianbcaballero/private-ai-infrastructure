@@ -148,8 +148,6 @@ Tradeoffs:
 - **Throughput ceiling** — Pi 3B+ USB 2.0 bus caps practical
   throughput at ~300 Mbps. Sufficient for chat, SSH, and DNS;
   becomes a bottleneck only during large model downloads.
-- **Complexity** — VLAN sub-interfaces, NAT, and firewall rules
-  must be coordinated. Documented in `docs/inter-vlan-routing.md`.
 
 See [inter-vlan-routing.md](inter-vlan-routing.md) for the
 implementation detail of the routing and firewall layer.
