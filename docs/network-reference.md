@@ -17,14 +17,14 @@
 | aegis (Pi, eth1.10) | 10 | 10.10.10.1 | AI VLAN gateway |
 | aegis (Pi, eth1.20) | 20 | 10.20.20.1 | Admin VLAN gateway |
 | aegis (Pi, wg0) | tunnel | 10.0.0.1 | VPN tunnel endpoint |
-| aeglero-ai | 10 | 10.10.10.10 | Open WebUI on :3000 |
+| aeglero-host | 10 | 10.10.10.10 | Open WebUI on :3000 |
 | aeglero-admin | 20 | 10.20.20.10 | Windows workstation, wired |
 
 ## Switch Port Map
 | Port | Device | VLAN Membership |
 |---|---|---|
 | 1 | Spectrum router uplink | Untagged VLAN 30 |
-| 2 | aeglero-ai | Untagged VLAN 10 |
+| 2 | aeglero-host | Untagged VLAN 10 |
 | 3 | aeglero-admin | Untagged VLAN 20 |
 | 4 | aegis (eth0) | Untagged VLAN 30 |
 | 5 | aegis (eth1 trunk) | Tagged VLAN 10, Tagged VLAN 20 |
@@ -36,7 +36,7 @@
 |---|---|---|---|
 | 51820 | UDP | WireGuard VPN | Public internet |
 | 2222 | TCP | SSH (aegis) | Admin VLAN, WireGuard tunnel |
-| 22 | TCP | SSH (aeglero-ai) | Admin VLAN, via Pi forward |
+| 22 | TCP | SSH (aeglero-host) | Admin VLAN, via Pi forward |
 | 53 | UDP/TCP | Pi-hole DNS | All VLANs, WireGuard tunnel |
 | 80 | TCP | Pi-hole admin | Admin VLAN only |
 | 3000 | TCP | Open WebUI | Admin VLAN, WireGuard tunnel |

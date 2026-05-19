@@ -14,7 +14,7 @@
 - **From admin workstation (local):** `wake`
 - **From remote (anywhere):** connect WireGuard first, then `wake`
 
-Both paths now route through aegis — admin's wired connection
+Both paths route through aegis — admin's wired connection
 is on VLAN 20, which cannot directly broadcast WoL to VLAN 10.
 The `wake` alias SSHes into the Pi and runs `~/wake-server.sh`,
 which broadcasts the magic packet on the VLAN 10 segment.

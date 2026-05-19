@@ -1,7 +1,7 @@
 # Threat Model
 
 ## Assets Being Protected
-- Local AI inference server (aeglero-ai) and any sensitive
+- Local AI inference server (aeglero-host) and any sensitive
   data it processes (potential PHI in regulated contexts)
 - Development environment and code
 - Network infrastructure (switch, gateway)
@@ -29,7 +29,7 @@
 | Internet | — | External | Untrusted | WireGuard only |
 | Egress | 30 | Spectrum, Pi eth0, WiFi clients, other-room | Limited | Internet, Pi DNS |
 | Admin | 20 | aeglero-admin | Trusted | AI server (limited ports), Pi services, internet |
-| AI Inference | 10 | aeglero-ai | High-value | Pi DNS, internet (NAT'd), nothing else inbound |
+| AI Inference | 10 | aeglero-host | High-value | Pi DNS, internet (NAT'd), nothing else inbound |
 | WireGuard tunnel | — | Authenticated VPN clients | Conditionally trusted | AI Open WebUI, Pi SSH/DNS |
 
 ## Attack Surface
@@ -74,12 +74,8 @@
 
 - **Pi as single point of failure** for inter-VLAN routing.
   Mitigated by ease of rebuild from backup `/etc/`.
-- **No IDS/IPS** at the inter-VLAN boundary. Could add Suricata
-  or similar on the Pi at a throughput cost.
 - **Pi 3B+ throughput ceiling** (~300 Mbps practical). Not a
   bottleneck for typical traffic; would matter only during
   large model pulls or backups.
 - **Trust of admin VLAN is broad** — admin workstation can
-  reach AI server on tcp/22 and tcp/3000. Compromise of admin
-  workstation does grant control of the AI server, accepted
-  as the operational model.
+  reach AI server on tcp/22 and tcp/3000.

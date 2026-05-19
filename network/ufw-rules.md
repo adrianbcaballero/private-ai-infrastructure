@@ -17,6 +17,7 @@ rewriting).
 | 2222 | TCP | 10.20.20.0/24 | SSH from admin VLAN |
 | 2222 | TCP | wg0 (interface) | SSH from WireGuard clients |
 | 80 | TCP | 10.20.20.0/24 | Pi-hole admin from admin VLAN |
+| 161 | UDP | 10.10.10.10 | SNMP from LibreNMS container on AI host |
 | (default) | all | Anywhere | DENY |
 
 ## FORWARD (inter-VLAN routing through the Pi)
@@ -66,6 +67,7 @@ sudo ufw allow in on wg0 to any port 53
 sudo ufw allow from 10.20.20.0/24 to any port 2222 proto tcp
 sudo ufw allow in on wg0 to any port 2222 proto tcp
 sudo ufw allow from 10.20.20.0/24 to any port 80 proto tcp
+sudo ufw allow from 10.10.10.10 to any port 161 proto udp
 ```
 
 ### FORWARD (route allow) rules

@@ -31,7 +31,7 @@ Services running on the Pi:
 - Fail2ban — SSH brute-force protection
 - IP forwarding + MASQUERADE — NAT egress for isolated VLANs
 
-### aeglero-ai — AI Inference Server (VLAN 10)
+### aeglero-host — AI Inference Server (VLAN 10)
 Bare-metal Ubuntu Server running llama.cpp with CUDA for local
 AI inference. Dual GPU tensor splitting across GTX 1080 and
 GTX 1660 Super. Lives entirely within VLAN 10 — structurally
@@ -63,7 +63,7 @@ reachable from the egress segment.
 | Port | Role | VLAN Config |
 |---|---|---|
 | 1 | Spectrum router uplink | Untagged VLAN 30 |
-| 2 | aeglero-ai | Untagged VLAN 10 |
+| 2 | aeglero-host | Untagged VLAN 10 |
 | 3 | aeglero-admin | Untagged VLAN 20 |
 | 4 | aegis (Pi built-in eth0) | Untagged VLAN 30 |
 | 5 | aegis (Pi USB-eth eth1) | Tagged trunk, VLAN 10 + VLAN 20 |
@@ -82,14 +82,14 @@ aeglero-admin (10.20.20.10)
   → kernel routing → eth1.10 (10.10.10.1)
   → switch Port 5 (tagged VLAN 10)
   → switch Port 2 (untagged VLAN 10)
-  → aeglero-ai (10.10.10.10)
+  → aeglero-host (10.10.10.10)
 ```
 The Pi's FORWARD chain validates this is an allowed flow
 (admin→AI on tcp/22 or tcp/3000) before forwarding.
 
 ### AI Server → Internet (e.g., HuggingFace model pull)
 ```
-aeglero-ai (10.10.10.10)
+aeglero-host (10.10.10.10)
   → Pi eth1.10 (default gateway)
   → kernel routing → eth0 (192.168.1.x)
   → MASQUERADE (source rewritten to Pi's egress IP)
@@ -114,7 +114,7 @@ phone on cellular → public internet
   → decrypt → wg0 (10.0.0.x)
   → kernel routing → eth1.10
   → Pi FORWARD chain validates (VPN → AI:3000 allowed)
-  → aeglero-ai (10.10.10.10:3000)
+  → aeglero-host (10.10.10.10:3000)
 ```
 
 ## Security Enforcement Layers
